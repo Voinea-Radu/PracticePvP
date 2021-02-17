@@ -5,9 +5,12 @@
 
 package dev.rocco.bukkit.practice.commands;
 
+import dev.rocco.bukkit.practice.PracticePlugin;
+import dev.rocco.bukkit.practice.arena.listener.PlayerListener;
 import dev.rocco.bukkit.practice.utils.GetPlayer;
 import dev.rocco.bukkit.practice.utils.config.ConfigEntries;
 import dev.rocco.bukkit.practice.utils.permission.Permission;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

@@ -13,11 +13,16 @@ import dev.rocco.bukkit.practice.arena.queue.QueuedPlayer;
 import dev.rocco.bukkit.practice.arena.queue.Queues;
 import dev.rocco.bukkit.practice.utils.config.ConfigEntries;
 import dev.rocco.bukkit.practice.utils.permission.Permission;
+import net.minecraft.server.v1_8_R3.ItemMapEmpty;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
@@ -30,6 +35,25 @@ public class QueueCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         if(Permission.DUEL.assertHasPerm(sender)) return true;
         if(!(sender instanceof Player)) return true;
+
+        if(args.length == 0){
+            //show gui
+            Inventory gui = Bukkit.createInventory(null, 9, "Ranked / Unranked");
+            ItemStack unranked = new ItemStack(Material.WOOD_SWORD);
+            ItemMeta meta = unranked.getItemMeta();
+            meta.setDisplayName("Unranked");
+            unranked.setItemMeta(meta);
+
+            ItemStack ranked = new ItemStack(Material.IRON_SWORD);
+            meta = ranked.getItemMeta();
+            meta.setDisplayName("Ranked");
+            ranked.setItemMeta(meta);
+
+            gui.setItem(2, unranked);
+            gui.setItem(6, ranked);
+
+            ((Player) sender).openInventory(gui);
+        }
 
         if(args.length > 1) {
             Queues.removePlayer((Player)sender);

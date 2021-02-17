@@ -20,6 +20,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.util.Date;
 
 public class PracticePlugin extends JavaPlugin {
 
@@ -58,9 +59,6 @@ public class PracticePlugin extends JavaPlugin {
         getCommand("stats").setExecutor(new StatsCommand());
         getCommand("queue").setExecutor(new QueueCommand());
 
-        PluginManager pm = Bukkit.getPluginManager();
-        pm.registerEvents(new PlayerListener(), this);
-
         new MetricsLite(this); /* Metrics */
 
         PluginCompat.check();
@@ -71,6 +69,14 @@ public class PracticePlugin extends JavaPlugin {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        Bukkit.getPluginManager().registerEvents(new PlayerListener(), PracticePlugin.INST);
+
+
+
+
+
+
     }
 
     @Override
