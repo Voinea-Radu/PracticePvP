@@ -40,7 +40,9 @@ repositories {
 
     maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' } /* Spigot */
     maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' } /* BungeeCord */
+    maven { url = 'https://oss.sonatype.org/content/repositories/central' }
     maven { url = 'http://maven.sk89q.com/repo/' } /* WorldEdit, for schematics */
+    maven { url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/' } /* WorldEdit, for schematics */
 
     mavenCentral()
     mavenLocal()
@@ -49,8 +51,14 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
+    //compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT' // The Spigot API with no shadowing. Requires the OSS repo.
+    //compileOnly 'org.bukkit:bukkit:1.8.8-R0.1-SNAPSHOT' // The Bukkit API with no shadowing.
+    //compileOnly 'org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT' // The full Spigot server with no shadowing. Requires mavenLocal.
+    //compileOnly 'org.bukkit:craftbukkit:1.8.8-R0.1-SNAPSHOT' // The full CraftBukkit server with no shadowing. Requires mavenLocal.
+
     compileOnly 'org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT' /* CraftBukkit */
-    compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT' /* Spigot */
+    compileOnly "org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT"
+    compileOnly 'me.clip:placeholderapi:2.10.9'
 
     compileOnly 'com.sk89q.worldedit:worldedit-bukkit:6.1.4-SNAPSHOT' /* WorldEdit */
     compileOnly 'com.sk89q.worldedit:worldedit-core:6.1.4-SNAPSHOT' /* WorldEdit */
@@ -60,4 +68,4 @@ dependencies {
 }
 
 if(System.getenv("OUT_DIR") != null)
-    jar.destinationDir = new File(System.getenv("OUT_DIR"))
+    jar.destinationDir = new File("C:/dev/")

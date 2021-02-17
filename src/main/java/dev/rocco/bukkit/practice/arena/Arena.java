@@ -214,12 +214,28 @@ public class Arena {
         state = ArenaState.PREGAME;
 
         /* Load the map */
-        MapGenerator.generateMap(map);
+        Location location = MapGenerator.generateMap(map);
 
         /* Assign teams */
         TeamAssigner.assignTeams(this);
 
         /* TODO Teleport players */
+
+        for(ArenaTeam team : combatants){
+            System.out.println(team.getPlayers());
+            for(Player player : team.getPlayers()){
+                Random random = new Random();
+                int x = random.nextInt(30);
+                int z = random.nextInt(30);
+
+                Location tpLocation = new Location( location.getWorld(), location.getX() + x - 15, location.getBlockY(), location.getBlockZ() + z - 15);
+
+                System.out.println(tpLocation);
+
+                player.teleport(tpLocation);
+            }
+        }
+
 
         /* Apply no-hit-delay to players */
         if(kit.hasNoHitDelay()) {

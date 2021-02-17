@@ -20,15 +20,14 @@ public class MapGenerator {
 
     public static MapGenerationType type = MapGenerationType.RANDOM;
 
-    public static void generateMap(ArenaMap map) {
-        generateMap(map, type);
+    public static Location generateMap(ArenaMap map) {
+        return generateMap(map, type);
     }
 
-    private static void generateMap(ArenaMap map, MapGenerationType type) {
+    private static Location generateMap(ArenaMap map, MapGenerationType type) {
         switch (type) {
             case RANDOM:
-                generateRandom(map);
-                break;
+                return generateRandom(map);
             case WORLD:
                 if(Arenas.getByWorldAndPlaying(map.getWorld()) != null) {
 
@@ -38,13 +37,14 @@ public class MapGenerator {
                 }
                 break;
         }
+        return null;
     }
 
-    public static void generateRandom(ArenaMap map) {
+    public static Location generateRandom(ArenaMap map) {
         if(!PluginCompat.we) {
             Bukkit.getLogger().severe("WorldEdit not found, can't use Random generation!");
             generateMap(map, MapGenerationType.WORLD);
-            return;
+            return null;
         }
         ThreadLocalRandom rand = ThreadLocalRandom.current();
         int start = rand.nextInt(20, 6000000);
@@ -56,6 +56,7 @@ public class MapGenerator {
         Location target = new Location(w, total, ConfigEntries.ARENA_YLEVEL, total);
 
         SchematicUtils.pasteSchematic(map, target);
+        return target;
 
     }
 

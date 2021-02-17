@@ -1,0 +1,73 @@
+name: "Practice"
+version: "1.0"
+description: "PVP Practice plugin"
+author: "RoccoDev"
+website: "https://rocco.dev/practice"
+main: "dev.rocco.bukkit.practice.PracticePlugin"
+commands:
+  practice:
+    description: "Main Practice command"
+    usage: "/practice"
+  duel:
+    description: "Ask someone for a duel"
+    usage: "/duel <player>"
+  report:
+    description: "Report someone else"
+    usage: "/report <player> <reason>"
+  ping:
+    description: "See someone's ping"
+    usage: "/ping [player]"
+  spectate:
+    description: "Spectate a player"
+    usage: "/spectate <player>"
+    aliases: ["spec"]
+  stats:
+    description: "See someone's stats"
+    usage: "/stats [player]"
+    aliases: ["records"]
+  rtp:
+    description: "Teleport to a player"
+    usage: "/rtp <player>"
+  queue:
+    description: "Queues for a match"
+    usage: "/queue"
+permissions:
+  practice.*:
+    description: "Gives admin access to the plugin."
+    default: op
+    children:
+      practice.duel: true
+      practice.duel.force: true
+      practice.report: true
+      practice.report.receive: true
+      practice.ping: true
+      practice.ping.others: true
+      practice.spectate: true
+  practice.duel:
+    description: "/duel command"
+    default: true
+  practice.report:
+    description: "/report command"
+    default: true
+  practice.report.receive:
+    description: "Receives reports"
+  practice.ping:
+    description: "/ping command"
+    default: true
+  practice.ping.others:
+    description: "/ping someone else"
+  practice.spectate:
+    description: "Spectate a player using /spectate"
+    default: true
+  practice.info:
+    description: "Run the /practice command"
+    default: true
+  practice.stats:
+    description: "Run the /stats command"
+    default: true
+  practice.stats.others:
+    description: "Check someone else's stats"
+    default: true
+  practice.admin:
+    description: "Allows to use the admin features of the /practice command"
+    default: op

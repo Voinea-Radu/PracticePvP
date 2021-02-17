@@ -8,6 +8,7 @@ package dev.rocco.bukkit.practice;
 import dev.rocco.bukkit.practice.arena.FileLoader;
 import dev.rocco.bukkit.practice.arena.listener.PlayerListener;
 import dev.rocco.bukkit.practice.commands.*;
+import dev.rocco.bukkit.practice.expansions.PAPI;
 import dev.rocco.bukkit.practice.stats.SQL;
 import dev.rocco.bukkit.practice.stats.SQLiteStatsManager;
 import dev.rocco.bukkit.practice.stats.StatsManager;
@@ -28,6 +29,13 @@ public class PracticePlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            new PAPI().register();
+        } else {
+            System.out.println("Could not find PlaceholderAPI! This plugin is required.");
+            Bukkit.getPluginManager().disablePlugin(this);
+        }
 
         PLUGIN_DIR = getDataFolder();
         INST = this;

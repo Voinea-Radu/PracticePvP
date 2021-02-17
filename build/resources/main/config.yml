@@ -1,0 +1,244 @@
+#######################################################
+# Practice Config
+# For info and help, check the Git repo over here:
+# https://github.com/RoccoDev/Practice
+# More specifically, config documentation can be found over here:
+# https://rocco.dev/practice/config
+# If you wish to contact me privately, send me an email:
+# hey@rocco.dev
+# You may also find me on Discord: RoccoDev#2699
+# As well as on SpigotMC.org: Rocco
+########################################################
+
+########################################################
+# DOCUMENTATION
+#
+# You can use color codes with '&' (e.g., &a).
+#
+# Some config entries support parameters:
+# %1$s represents the first parameter,
+# %2$s represents the second parameter,
+# and so on.
+#########################################################
+
+## BOOLEANS
+
+# Enable /report
+bool.report: true
+
+# Enable /ping
+bool.ping: true
+
+# Enable /duel
+bool.duel: true
+
+
+## PREFIXES
+
+# Prefix for all information plugin messages
+prefix.info: "&a&lPractice §8»§7 "
+
+# Prefix for all error plugin messages
+prefix.error: "&c&lPractice §8»§7 "
+
+
+## ERRORS
+
+# This error is thrown when the user is missing the required permission to do the action.
+# Parameters:
+# %1$s - The required permission (e.g., practice.report)
+error.permission: "Invalid permissions. (Missing %1$s)"
+
+# This error is thrown when the plugin could not find the player specified.
+# Parameters:
+# %1$s - The player name that couldn't be found
+error.notfound: "Could not find player %1$s."
+
+# This error is thrown when the player is kicked from an arena.
+# Parameters:
+# %1$s - The reason for the kick
+error.arena.kick: "You have been kicked from the arena. Reason:&c %1$s"
+
+# This error is thrown when a player tries to spectate a player who isn't in an arena.
+# Parameters:
+# %1$s - The player name
+error.arena.playernotfound: "Player %1$s is not playing."
+
+
+## DATABASE
+
+# The database engine
+# Available engines: sqlite, mysql
+database.engine: sqlite
+
+# The database host
+database.host: localhost
+
+# The database port
+database.port: 3306
+
+# The database name
+database.name: practice
+
+# The database username
+database.user: admin
+
+# The database password
+database.key: admin
+
+
+## ARENA
+
+# The Y coordinate of the arena (used by the generator).
+# Too low y levels will cause the sky to appear dark,
+# and too high y levels will cause the player models to disappear.
+arena.ylevel: 60
+
+# Whether the spectators should be able to fly.
+arena.spectator.allowflight: true
+
+# Whether the spectators should be flying as soon as they join/die.
+arena.spectator.flyondeath: true
+
+# The way the player's inventory should be given back.
+# Possible values:
+# - "reset": Cache the inventory before joining, then give it back.
+# - "clear": Clear the inventory after the game. (The contents WILL be lost!)
+arena.kit.reset: "reset"
+
+# The message shown when a player is invited to a duel.
+# Parameters:
+# %1$s - The sender
+# %2$s - The kit
+# %3$s - The map
+arena.invite: "&a%1$s&7 has asked you to duel on map &a%3$s &7with kit &a%2$s&7. &aClick here&7 or run &a/duel accept %1$s &7to accept."
+
+# The message shown when a player joins the arena.
+# Parameters:
+# %1$s - The player
+arena.join: "&a%1$s&7 has joined the arena."
+
+# The message shown when a player leaves the arena.
+# Parameters:
+# %1$s - The player
+arena.leave: "&a%1$s&7 has left the arena."
+
+# The message shown when a player joins the arena as a spectator.
+# It's also shown when a player dies and, as such, becomes a spectator.
+# Parameters:
+# %1$s - The player
+arena.spectator.join: "&a%1$s&7 is now spectating."
+
+# The message shown when a player leaves the arena as a spectator.
+# Parameters:
+# %1$s - The player
+arena.spectator.leave: "&a%1$s&7 is no longer spectating."
+
+# Whether the spectators should be able to break blocks.
+arena.spectator.interact: false
+
+# Whether the players should only be able to break player-placed blocks.
+arena.interact.player: true
+
+# The message shown when a player dies.
+# Parameters:
+# %1$s - The dead player
+# %2$s - The killer
+arena.death.player: "&c%1$s&7 was killed by &a%2$s&7. Click here to view inventories."
+
+# The message shown when a player dies, but the killer is unknown.
+# Parameters:
+# %1$s - The dead player
+arena.death.unknown: "&c%1$s&7 died. Click here to view inventory."
+
+# Whether the message above should be clickable, and open the players' inventory.
+arena.death.inventory: true
+
+# The message shown when a match ends.
+# Parameters:
+# %1$s - The winning team (team name)
+# %2$s - The winning team (player list - Player1, Player2)
+# %3$s - The winning team (no. players)
+# %4$s - Spectators (Player1, Player2)
+# %5$s - Spectators (amount)
+# %6$s - Info prefix (see prefix.info)
+# Note: use \n for newlines.
+arena.end: "The match has ended.\n%6$s&aWinners (%3$s): %2$s\n%6$s&eSpectators (%5$s): %4$s"
+
+
+## /ping COMMAND
+
+# The message that is sent as a result of the /ping command.
+# Parameters:
+# %1$s - The player
+# %2$s - The player's ping, in milliseconds.
+ping.result: "%1$s's ping is %2$sms."
+
+
+## REPORT
+
+# The message shown to moderators when a report is sent.
+# Parameters:
+# %1$s - The sender
+# %2$s - The reported player
+# %3$s - The reason
+report.notification: "&a%2$s &7has been reported by %1$s for &a%3$s&7. Click to investigate."
+
+# The cooldown (in seconds) a player has to wait before submitting a new report.
+report.cooldown.amount: 30
+
+# The message shown when a player has to wait before submitting a new report.
+# Parameters:
+# %1$s - The seconds left
+report.cooldown.error: "You need to wait &c%1$s &7more seconds before submitting a report."
+
+# The message shown when a report has been succesfully sent.
+report.successful: "Succesfully submitted report."
+
+
+## STATS
+
+# The message shown by the /stats command.
+# Parameters:
+# %1$s - Kills
+# %2$s - Deaths
+# %3$s - Victories
+# %4$s - Games played
+# %5$s - Forfeits
+# %6$s - Player name
+# %7$s - Info prefix (see prefix.info)
+stats.overview: "Showing &a%6$s&7's stats:\n%7$sKills:&a %1$s&7\n%7$sDeaths:&a %2$s&7\n%7$sVictories:&a %3$s&7\n%7$sPlayed:&a %4$s&7\n%7$sForfeits:&a %5$s"
+
+
+## QUEUE
+
+# The timeout for the ranked queue search.
+# When this timer expires the elo range is updated.
+# Unit: Milliseconds (1 second = 1000 milliseconds)
+queue.ranked.timeout: 5000
+
+# The elo range delta that should be applied when extending the range.
+# The value is added to the max elo and subtracted to the min elo.
+queue.ranked.elo_shift: 200
+
+# Shown when a player joins a queue.
+# Parameters:
+# %1$s - Mode: Ranked/Unranked
+# %2$s - Kit name
+queue.join: "Succesfully joined the &a%1$s %2$s&7 queue."
+
+# Shown when a player leaves a queue.
+queue.leave: "You left the queue."
+
+# Shown when the matchmaking system is searching for player based on their rating.
+# Parameters:
+# %1$s - Minimum ELO
+# %2$s - Maximum ELO
+queue.elo_search: "Searching for players in ELO range &a%1$s&7-&a%2$s&7."
+
+# Shown at the end of a match.
+# Parameters:
+# %1$s - New ELO
+# %2$s - ELO difference (e.g., +10, -20)
+queue.elo_update: "Your new ELO: &a%1$s &7(&a%2$s&7)"
+
